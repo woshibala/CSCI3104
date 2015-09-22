@@ -90,8 +90,8 @@ def run():
 	input()
 	result = Find_Maximum_Subarray(pricewave,0,len(pricewave)-1)
 	#print result
-	print "Buy one share on:", date[result[0]]
-	print "Sell one share on:", date[result[1]]
-	print "Max outcome is:", result[2]
+	print "Buy stock on:", date[result[1]]
+	print "Sell stock on:", date[result[0]]
+	print "Max outcome per share is:", result[2]
 
 run()
