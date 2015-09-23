@@ -1,36 +1,22 @@
-import sys,math,time
+import sys,math,time,csv
+
 date = None
 pricewave = None
 def input():
 	global date,pricewave
-	for i in range(0,len(sys.argv)):
-			print i,": ",sys.argv[i]
-	file_object = open(sys.argv[1])
-	try:
-	     all_the_text = file_object.read( )
-	finally:
-	     file_object.close( )
-	a = ""
-	b = ""
+	d = []
+	p = []
 	date = []
 	price = []
-	flag = True
-	for i in all_the_text:
-		if i == "\t":
-			flag = False
-			date.append(a)
-			a = ""
-		elif i == "\n":
-			flag = True
-			price.append(b)
-			b = ""
-		else:
-			if flag == True:
-				a += i
-			else:
-				b += i 
-	price.append(b)
 	pricewave = []
+	with open(sys.argv[1],'r') as file:
+		for i in file:
+			d.append(i.split(",")[0])
+			p.append(i.split(",")[1])
+	while len(d) != 0:
+		date.append(d.pop())
+	while len(p) != 0:
+		price.append(p.pop())
 	for i in range(0,len(price)-1):
 		pricewave.append(float(price[i+1])-float(price[i]))
 	#for j in range(0,len(pricewave)-1):
@@ -67,14 +53,14 @@ def Find_Maximum_Subarray(A,low,high):
 def Find_Max_Crossing(A,low,mid,high):
 	max_left =  0
 	max_right = 0
-	left_sum = -100#float("-inf")
+	left_sum = float("-inf")
 	Sum = 0
 	for i in range(mid,low,-1):
 		Sum += float(A[i])
 		if Sum > left_sum:
 			left_sum = Sum
 			max_left = i
-	right_sum = -100#float("-inf")
+	right_sum = float("-inf")
 	Sum = 0
 	for j in range(mid+1,high):
 		Sum += float(A[j])
@@ -89,9 +75,17 @@ def run():
 	global date,pricewave
 	input()
 	result = Find_Maximum_Subarray(pricewave,0,len(pricewave)-1)
-	#print result
-	print "Buy stock on:", date[result[1]]
-	print "Sell stock on:", date[result[0]]
-	print "Max outcome per share is:", result[2]
+	print "Start date:",date[0]
+	print "End date:",date[len(date)-1]
+	print "Buy date:", date[result[0]]
+	print "Sell date:", date[result[1]]
+	print "Max reward per share is:", result[2]
 
 run()
+
+# the first argv is the name of the .csv file
+# you can run the algorithm by enter this:
+# pyhton Song_Yang_HW3.py KO.csv
+# KO.csv for coca-cola company
+# BABA.csv for Alibaba Group Holding
+# MSFT.csv for Microsoft Corporation 
