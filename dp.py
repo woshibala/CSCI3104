@@ -17,7 +17,7 @@ def input():
 	p = []
 	line = file.readline().split()
 	while line != [] :
-		entry = (int(line[0]),int(line[1]),int(line[2]))
+		entry = (int(line[0]),int(line[1]),int(line[2]))#tuple[0]=ai;tuple[1]=bi;tuple[2]=ci
 		p.append(entry)
 		line = file.readline().split()
 	for i in p:
@@ -27,11 +27,24 @@ def input():
 		price.append([])
 		for j in range(Y):
 			price[i].append(-1)
+	#store price for all sizes of cloth
 	for i in range(n):
 		if price[p[i][0]][p[i][1]] < p[i][2]:
 			price[p[i][0]][p[i][1]] = p[i][2]
 	for i in price:
 		print i
+	#store the max price for a i*j cloth
+	maxprice = []
+	for i in range(X):
+		maxprice.append([])
+		for j in range(Y):
+			maxprice[i].append(-1)
+	maxprice[0][0] = 0
+
+	for obj in range(n):
+		for i in range(X):
+			for j in range(Y):
+				
 
 
 
