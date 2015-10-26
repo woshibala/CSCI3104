@@ -20,8 +20,7 @@ def input():
 		entry = (int(line[0]),int(line[1]),int(line[2]))#tuple[0]=ai;tuple[1]=bi;tuple[2]=ci
 		p.append(entry)
 		line = file.readline().split()
-	for i in p:
-		print i
+	
 	price = []
 	for i in range(X):
 		price.append([])
@@ -41,10 +40,28 @@ def input():
 			maxprice[i].append(-1)
 	maxprice[0][0] = 0
 
-	for obj in range(n):
+	for obj in p:
 		for i in range(X):
 			for j in range(Y):
-				
+				if obj[0] > i or obj[1] > j:
+					maxprice[i][j] = maxprice[i][j-1]
+				else:
+					l1 = []
+					for x in range(i):
+						aaa = maxprice[x][j]+maxprice[i-x][j]
+						l1.append(aaa)
+					max1 = max(l1)
+					l2 = []
+					for y in range(j):
+						bbb = maxprice[i][j-y]+maxprice[i][y]
+						l2.append(bbb)
+					max2 = max(l2)
+					l3 = [max1,max2,price[i][j]]
+					maxprice[i][j] = max(l3)
+
+	print maxprice[X-1][Y-1]
+
+
 
 
 
