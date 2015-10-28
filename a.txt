@@ -1,4 +1,6 @@
-import sys
+5 5
+1
+4 5 10import sys
 X = None
 Y = None
 price = None
@@ -25,34 +27,27 @@ def input():
 		line = file.readline().split()
 	
 	price = []
-	for i in range(X+1):
+	for i in range(X):
 		price.append([])
-		for j in range(Y+1):
-			price[i].append(None)
-	for i in range(1,X+1):
-		for j in range(1,Y+1):
-			price[i][j] = -1
+		for j in range(Y):
+			price[i].append(0)
 	#store price for all size of products
-	for i in range(1,n):
+	for i in range(n):
 		if price[p[i][0]][p[i][1]] < p[i][2]:
 			price[p[i][0]][p[i][1]] = p[i][2]
 
 	#store the max price for a i*j cloth
 	maxprice = []
-	for i in range(X+1):
+	for i in range(X):
 		maxprice.append([])
-		for j in range(Y+1):
-			maxprice[i].append(None)
-	for i in range(1,X+1):
-		for j in range(1,Y+1):
-			maxprice[i][j] = -1
-	maxprice[0][0] = 0
-	#maxprice[0][0] = 0		
+		for j in range(Y):
+			maxprice[i].append(0)
 	matrix = []
 	for i in range(X):
 		matrix.append([])
 		for j in range(Y):
-			matrix[i].append(None)																																																																																																																																																																																																																																																																																																														z
+			matrix[i].append(None)
+
 	sum = 0
 	h = 0
 	v = 0
